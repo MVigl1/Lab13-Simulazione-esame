@@ -30,9 +30,8 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
         #ROW with some controls
-        self.ddyear = ft.Dropdown(label="Anno")
+        self.ddyear = ft.Dropdown(label="Anno", on_change=self.dropdown_changed)
         self.ddshape = ft.Dropdown(label="Shape")
-
 
         # button for the "creat graph" reply
         self.btn_graph = ft.ElevatedButton(text="Crea Grafo", on_click=self._controller.handle_graph)
@@ -59,6 +58,10 @@ class View(ft.UserControl):
     @property
     def controller(self):
         return self._controller
+
+    def dropdown_changed(self, e):
+        self._controller.fillDDshape()
+        self.update_page()
 
     @controller.setter
     def controller(self, controller):

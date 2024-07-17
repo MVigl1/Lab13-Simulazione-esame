@@ -11,9 +11,30 @@ class Controller:
         self._listShape = []
 
     def fillDD(self):
-        pass
+        anni = self._model.getYears()
+        for anno in anni:
+            self._view.ddyear.options.append(ft.dropdown.Option(anno))
+
+    def fillDDshape(self):
+        self._view.ddshape.options = []
+        if self._view.ddyear is not None:
+            anno = self._view.ddyear.value
+            shapes = self._model.setShape(anno)
+            for shape in shapes:
+                if shape != "":
+                    self._view.ddshape.options.append(ft.dropdown.Option(shape))
+            self._view.update_page()
+
+        else:
+            pass
+
 
     def handle_graph(self, e):
-        pass
+        if self._view.ddyear is not None and self._view.ddshape is not None:
+            anno = self._view.ddyear.value
+            forma = self._view.ddshape.value
+            self._model.creaGrafo(anno, forma)
+
+
     def handle_path(self, e):
         pass
