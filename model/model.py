@@ -66,6 +66,8 @@ class Model:
         for n in self._grafo.nodes():
             sum_w = 0
             for e in self._grafo.edges(n, data=True):
+                print(e)
+                print(e[2])
                 sum_w += e[2]['weight']
             pp.append((n.id, sum_w))
         return pp
